@@ -72,13 +72,20 @@ Configure Action Groups to send notifications via email or webhook when an alert
 1. Enter the **Name** as `Email Notification`.
 1. CLick on **Review + create**, followed by **Create**.
 
-### Task 2: Configure dynamic threshold alerts based on metrics trends 
+### Task 2: Configure dynamic threshold alerts based on metrics trends (Read-Only)
 
-Learn how to set up dynamic thresholds for alerts based on trends in function performance metrics. 
+Dynamic thresholds in Azure Monitor use machine learning to automatically adjust alert conditions based on historical data trends. Unlike static thresholds, which rely on fixed values, dynamic thresholds analyze past behavior to detect anomalies, ensuring more accurate and context-aware alerting. This approach is particularly useful for metrics with fluctuating baselines, reducing false positives and improving incident detection.
+
+In a production environment, dynamic thresholds require at least three days and 30 data samples to establish a baseline before they can trigger alerts effectively. However, since this lab operates within an shorter time window, it does not provide enough historical data for dynamic thresholds to function as expected. Due to this limitation, this task is provided as a read-only demonstration, allowing you to understand the concept without executing it in a constrained lab setting.
+
 1. In the search bar of the Azure Portal, type **Application Insights (1)** and select **Application Insights (2)** from the search results.
-1. Select the appinsights-<inject key="DeploymentID" enableCopy="false" />.
+
+1. Select the **appinsights-<inject key="DeploymentID" enableCopy="false" />**.
+
 1. Select **Alerts** under **Monitoring**.
-1. CLick on **+ Create** and then **+ Alert rule**.
+
+1. Click on **+ Create** and then **+ Alert rule**.
+
 1. Select the following options and click on **Next:Actions**.
     | Setting | Action |
     | -- | -- |
