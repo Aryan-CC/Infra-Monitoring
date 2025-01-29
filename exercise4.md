@@ -72,7 +72,6 @@ Configure Action Groups to send notifications via email or webhook when an alert
 1. Enter the **Name** as `Email Notification`.
 1. CLick on **Review + create**, followed by **Create**.
 
-
 ### Task 2: Configure dynamic threshold alerts based on metrics trends 
 
 Learn how to set up dynamic thresholds for alerts based on trends in function performance metrics. 
@@ -97,7 +96,6 @@ Learn how to set up dynamic thresholds for alerts based on trends in function pe
 1. Enter **Server Exceptions Alert** for **Alert rule name**.
 1. CLick on Advanced options and **uncheck** the box for **Automatically resolve alerts**.
 1. CLick on **Review + create**, followed by **Create**.
-
 
 ### Task 4: Integrate alerts with ServiceNow for incident management using Logic Apps 
 
@@ -299,6 +297,8 @@ In this task, you will integrate Azure Monitor with ServiceNow using Azure Logic
 
 1. As you will be integrating this with logic app, skip the notification configurations and click on **Next: Actions >**.
 
+   >**Note:** You can configure notifications with specific conditions to implement escalation policies. By defining actions based on severity or priority, you can ensure that relevant stakeholders are notified at different stages of the process. For example, when an issue is not resolved within a predefined time, a notification can be sent to a higher-level team or manager for escalation.
+
 1. In the Actions pane, select **Action type** as **Logic App (1)** and provide **Name** as **ITSM Records (2)**. Click on **edit (3)** to configure the logic app.
 
    ![](./media/alrtimg9.png)
@@ -344,12 +344,8 @@ In this task, you will integrate Azure Monitor with ServiceNow using Azure Logic
    ![](./media/snimg18.png)
 
    >**Note:** You have successfully built a flow where the Azure alerts are successfully connected with ServiceNow.
-   
-### Task 5: Configure alert escalation policies and multiple notification channels  
 
-Set up alert escalation policies and configure multiple notification channels to ensure timely responses. 
-
-### Task 6: Cq
+### Task 5: Cq
 
 Learn to create multi-condition alerts that trigger based on a combination of performance metrics and log data. 
 
