@@ -120,7 +120,9 @@ In this task, you will integrate data from Application Insights into workbooks t
 
    ![](./media/wbimg15.png)
 
-1. Once saved, you will beable to see a line chart as selected. This shows that how many images need to be processed manually. Click on **&#x2714; Done Editing**
+1. Once saved, click on **Run metrics**.
+
+1. you will be able to see a line chart as selected. This shows that how many images need to be processed manually. Click on **&#x2714; Done Editing**
 
    ![](./media/wbimg16.png)
 
