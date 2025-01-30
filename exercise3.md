@@ -114,11 +114,7 @@ Dive deeper into KQL for advanced queries, including joins, aggregation, and tim
    | order by timestamp desc
    ```
 
-### Task 4: Create custom log tables in Log Analytics Workspace and reference them in KQL queries 
-
-Learn how to create custom log tables in Log Analytics and reference them in KQL queries for custom reporting. 
-
-### Task 5: Analyze function metrics (e.g., execution time, failure rate) and adjust granularity 
+### Task 4: Analyze function metrics (e.g., execution time, failure rate) and adjust granularity 
 
 Examine important function metrics like execution time and failure rate, and adjust data granularity for better insights. 
 
@@ -134,7 +130,7 @@ Examine important function metrics like execution time and failure rate, and adj
 
 1. Granularity can be changes by the `Show data for last` option, try changing it to 6 hours and 12 hours to reflect the updated data for that particular timeline.
 
-### Task 6: Leverage Log Analytics Workspace (AIOps) and Detect Anomalies with KQL using Machine Learning capabilities 
+### Task 5: Leverage Log Analytics Workspace (AIOps) and Detect Anomalies with KQL using Machine Learning capabilities 
 
 - **Time Series:** A time series is a sequence of data points collected or recorded at consistent intervals over time. It helps track and analyze trends, patterns, and changes in data, such as system performance or event counts. By visualizing data in a time series, we can spot regular behaviors and detect deviations that may indicate issues or changes in behavior.
 
@@ -211,6 +207,6 @@ In this task, you will apply machine learning (AIOps) capabilities within KQL to
 
    >**LabTip:** This query analyzes logs from the past 21 days and identifies patterns that differ on a specific anomaly date (yesterday) compared to other days. It labels logs as either "AnomalyDate" or "OtherDates" and then uses the diffpatterns function to highlight differences in log patterns between the anomaly date and normal days. This helps in identifying unusual system behavior that may have caused an issue.
 
-### Task 7: Explore insights from function execution failures and optimize for faster troubleshooting  
+### Task 6: Explore insights from function execution failures and optimize for faster troubleshooting  
 
 Investigate insights from execution failures and optimize for faster root cause analysis and troubleshooting.

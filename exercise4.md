@@ -43,6 +43,81 @@ Set up alert rules to notify you of function execution failures, ensuring proact
 1. CLick on Advanced options and **uncheck** the box for **Automatically resolve alerts**.
 1. Click on **Review + create**
 
+### Task 2: Configure dynamic threshold alerts based on metrics trends (Read-Only)
+
+Dynamic thresholds in Azure Monitor use machine learning to automatically adjust alert conditions based on historical data trends. Unlike static thresholds, which rely on fixed values, dynamic thresholds analyze past behavior to detect anomalies, ensuring more accurate and context-aware alerting. This approach is particularly useful for metrics with fluctuating baselines, reducing false positives and improving incident detection.
+
+In a production environment, dynamic thresholds require at least three days and 30 data samples to establish a baseline before they can trigger alerts effectively. However, since this lab operates within an shorter time window, it does not provide enough historical data for dynamic thresholds to function as expected. Due to this limitation, this task is provided as a read-only demonstration, allowing you to understand the concept without executing it in a constrained lab setting.
+
+1. In the search bar of the Azure Portal, type **Application Insights (1)** and select **Application Insights (2)** from the search results.
+
+   ![](./media/dyimg1.png)
+
+1. Select the **appinsights-<inject key="DeploymentID" enableCopy="false" />**.
+
+   ![](./media/dyimg2.png)
+
+1. Once you are in the appinsights page,Select **Alerts (1)** from the left menu under **Monitoring**. Set the **Metric** value to **ProcessImage Failures (2)**, **Aggregation** to **Count (3)** and click on **New alert rule (4)**.
+
+   ![](./media/dyimg3.png)
+
+1. Select the following options and click on **Next:Actions (8)**.
+    | Setting | Action |
+    | -- | -- |
+    | **Signal name** | Failed requests **(1)** |
+    | **Threshold type** | **Dynamic** **(2)** |
+    | **Aggregation type** | count **(3)** |
+    | **Value is** | **Greater than** **(4)** |
+    | **Threshold Sensitivity** | Medium **(5)** |
+    | **Check every** | 1 minute **(6)** |
+    | **Lookback period** | 5 minute **(7)** |
+
+   ![](./media/dyimg4.png)
+
+   >**LabTip:** You will get three kind of threshold sensitivity:
+
+   - **High:** The system detects even the smallest deviations from the expected pattern. This means that alerts will trigger more frequently, making it ideal for monitoring critical applications where even minor anomalies could indicate potential failures. However, this can sometimes lead to false positives, as normal fluctuations may be flagged as issues.
+
+   - **Medium:** The threshold is more balanced, allowing for moderate variations in data while still detecting significant anomalies. This is the default setting and works well for most scenarios where occasional fluctuations are normal, but substantial deviations should still be flagged for investigation.
+
+   - **Low:** This sensitivity only detects large deviations from the normal pattern. This setting is useful in environments where fluctuations are common and expected, such as applications with regular traffic spikes. While it helps reduce false alarms, it may also miss smaller anomalies that could be early indicators of issues.
+
+1. Click on **Create Action group**.
+
+1. On the **Create action group** pane, configure with the following details and click on **Next: Notifications > (4)**.
+
+    | Setting | Action |
+    | -- | -- |
+    | **Resource group** | **hands-on-lab-<inject key="DeploymentID"></inject>** **(1)** |
+    | **Action group name** | **dynamic-actions** **(2)** |
+    | **Display name** | **dynamic** **(3)** |
+
+   ![](./media/dyimg5.png)
+
+1. In the **Notifications** tab, set notification type as **Email/SMS message/Push/Voice** and provide **Name** as **dynamic**. In the menu opened you have to setup your email and phone number to get the alerts.
+
+   ![](./media/dyimg6.png)
+
+1. In the **Action** pane, click on **Next: Details**.
+
+   ![](./media/dyimg7.png)
+
+1. In the **Details**pane, set **Severity** to **1 - Error (1)**, provide **Alert rule name** as **dynamic-alerts (2)** and click on **Review + Create (3)**.
+
+   ![](./media/dyimg8.png)
+
+1. Now the dynamic alert will be created. You will have to run the application again to get the data. Navigate to **Visual Studio** from your LabVM.
+
+1. Inside **Visual Studio**, Navigate to the **UploadImages** project using the Solution Explorer. Right-click on **UploadImages (1)** project, select **Debug (2)** and click on **Start New instance (3)**.
+
+   ![](./media/vsimg1new.png)
+
+1. When the console window appears, enter **2** and press **ENTER**. This action uploads a handful of car photos to the images container of your Blob storage account. 
+
+   ![](./media/vsimg2new.png)
+
+1. Once the image upload process is done, after sometime you will get the notification alerts.
+
 ### Task 3: Set up Action Groups for email or webhook notifications 
 
 Configure Action Groups to send notifications via email or webhook when an alert is triggered. 
@@ -70,38 +145,6 @@ Configure Action Groups to send notifications via email or webhook when an alert
     | **Phone number** | Enter your mobile number where you want to get the alerts |
 
 1. Enter the **Name** as `Email Notification`.
-1. CLick on **Review + create**, followed by **Create**.
-
-### Task 2: Configure dynamic threshold alerts based on metrics trends (Read-Only)
-
-Dynamic thresholds in Azure Monitor use machine learning to automatically adjust alert conditions based on historical data trends. Unlike static thresholds, which rely on fixed values, dynamic thresholds analyze past behavior to detect anomalies, ensuring more accurate and context-aware alerting. This approach is particularly useful for metrics with fluctuating baselines, reducing false positives and improving incident detection.
-
-In a production environment, dynamic thresholds require at least three days and 30 data samples to establish a baseline before they can trigger alerts effectively. However, since this lab operates within an shorter time window, it does not provide enough historical data for dynamic thresholds to function as expected. Due to this limitation, this task is provided as a read-only demonstration, allowing you to understand the concept without executing it in a constrained lab setting.
-
-1. In the search bar of the Azure Portal, type **Application Insights (1)** and select **Application Insights (2)** from the search results.
-
-1. Select the **appinsights-<inject key="DeploymentID" enableCopy="false" />**.
-
-1. Select **Alerts** under **Monitoring**.
-
-1. Click on **+ Create** and then **+ Alert rule**.
-
-1. Select the following options and click on **Next:Actions**.
-    | Setting | Action |
-    | -- | -- |
-    | **Signal name** | Failed requests |
-    | **Threshold type** | **Dynamic** |
-    | **Aggregation type** | Total |
-    | **Value is** | **Greater than** |
-    | **Threshold Sensitivity** | Medium |
-    | **Check every** | 1 minute |
-    | **Lookback period** | 5 minute |
-
-1. Click on **Use action groups**.
-1. Click on **Server-Exceptions-for-TollBoothFunctions-<inject key="DeploymentID"></inject>**, followed by **Select**.
-1. Click on **Next:Details**.
-1. Enter **Server Exceptions Alert** for **Alert rule name**.
-1. CLick on Advanced options and **uncheck** the box for **Automatically resolve alerts**.
 1. CLick on **Review + create**, followed by **Create**.
 
 ### Task 4: Integrate alerts with ServiceNow for incident management using Logic Apps 
@@ -323,7 +366,6 @@ In this task, you will integrate Azure Monitor with ServiceNow using Azure Logic
    ![](./media/alrtimg11.png)
 
 1. On the details pane, provide details as follows and click on **Review + Create (5)**. Click on create to create the alert rule.
-
 
     | Setting | Action |
     | -- | -- |
